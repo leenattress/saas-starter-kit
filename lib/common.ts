@@ -46,3 +46,9 @@ export const maxLengthPolicies = {
   invitationId: 64,
   sendViaEmail: 10,
 };
+
+export const LlmPrompts= {
+  'FIX_SPELLING': 'You are a spelling corrector. Only return what I send in corrected, do not add any other text. Respond in JSON only in this format: {"response": "..."}. Please check and fix any spelling mistakes in this text:',
+  'SIMPLIFY': 'You are an expert business analyst. Simplify this text to make it easier to understand. Respond in JSON only in this format: {"response": "..."}. Please simplify this text: ',
+  'UNSOLUTION': 'You are an expert business analyst. Remove any technical solutions from this and turn it into a sentence representing a customer problem, without mention of the technology we might use. Respond in JSON only in this format: {"response": "..."}. Please de-solution this text: '
+}
