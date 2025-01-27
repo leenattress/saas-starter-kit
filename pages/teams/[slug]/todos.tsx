@@ -85,7 +85,7 @@ const TodoPage: NextPageWithLayout = () => {
         toast.error('Invalid response format from AI');
         return null;
       }
-    } catch (error) {
+    } catch {
       toast.error('Failed to get response from AI');
       return null;
     }
@@ -322,13 +322,13 @@ const TodoPage: NextPageWithLayout = () => {
               </button>
               <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                  <button onClick={() => handleFixSpelling(todo)}>Fix spelling</button>
+                  <button onClick={() => handleFixSpelling(todo)}>{t('fix-spelling')}</button>
                 </li>
                 <li>
-                  <button onClick={() => handleSimplify(todo)}>Simplify</button>
+                  <button onClick={() => handleSimplify(todo)}>{t('simplify')}</button>
                 </li>
                 <li>
-                  <button onClick={() => handleConvertToProblem(todo)}>Convert to problem</button>
+                  <button onClick={() => handleConvertToProblem(todo)}>{t('convert-to-problem')}</button>
                 </li>
               </ul>
             </div>
@@ -392,7 +392,7 @@ const TodoPage: NextPageWithLayout = () => {
         <progress className="progress w-full h-2 transition-all duration-300" value={calculateProgress()} max="100"></progress>
       </div>
       <div className="mb-4">
-        <span>{calculateProgress()}% complete</span>
+        <span>{calculateProgress()}{t('percent-complete')}</span>
       </div>
 
 

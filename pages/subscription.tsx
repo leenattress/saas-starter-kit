@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from 'react-daisyui';
+import { useTranslation } from 'next-i18next';
 
-const ProductDisplay = () => (
-  <Card className="rounded-md dark:border-gray-200 border border-gray-300">
-    <Card.Body>
-      <Card.Title tag="h2">
-        USD $20.00 / month
-      </Card.Title>
-      <p>Unlimited AI</p>
-    </Card.Body>
-    <Card.Actions className="justify-center m-2">
-      <form action="/api/stripe/create-checkout-session" method="POST">
-        <input type="hidden" name="lookup_key" value={process.env.NEXT_PUBLIC_STRIPE_PRICE_1} />
-        <Button
-          color="primary"
-          className="md:w-full w-3/4 rounded-md"
-          size="md"
-          type="submit"
-          id="checkout-and-portal-button"
-        >
-          Checkout
-        </Button>
-      </form>
-    </Card.Actions>
-  </Card>
-);
+const ProductDisplay = () => {
+  const { t } = useTranslation();
+  return (
+    <Card className="rounded-md dark:border-gray-200 border border-gray-300">
+      <Card.Body>
+        <Card.Title tag="h2">
+          {t('subscription.price')}
+        </Card.Title>
+        <p>{t('subscription.unlimited_ai')}</p>
+      </Card.Body>
+      <Card.Actions className="justify-center m-2">
+        <form action="/api/stripe/create-checkout-session" method="POST">
+          <input type="hidden" name="lookup_key" value={process.env.NEXT_PUBLIC_STRIPE_PRICE_1} />
+          <Button
+            color="primary"
+            className="md:w-full w-3/4 rounded-md"
+            size="md"
+            type="submit"
+            id="checkout-and-portal-button"
+          >
+            {t('subscription.checkout')}
+          </Button>
+        </form>
+      </Card.Actions>
+    </Card>
+  );
+};
 
 const SuccessDisplay = ({ sessionId }) => {
+  const { t } = useTranslation();
   return (
     <section>
       <div className="product Box-root">
         <Logo />
         <div className="description Box-root">
-          <h3>Subscription to starter plan successful!</h3>
+          <h3>{t('subscription.success')}</h3>
         </div>
       </div>
       <form action="/api/stripe/create-portal-session" method="POST">
@@ -43,7 +48,7 @@ const SuccessDisplay = ({ sessionId }) => {
           value={sessionId}
         />
         <button id="checkout-and-portal-button" type="submit">
-          Manage your billing information
+          {t('subscription.manage_billing')}
         </button>
       </form>
     </section>
@@ -57,9 +62,9 @@ const Message = ({ message }) => (
 );
 
 export default function Subscribe() {
-  let [message, setMessage] = useState('');
-  let [success, setSuccess] = useState(false);
-  let [sessionId, setSessionId] = useState('');
+  const [message, setMessage] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [sessionId, setSessionId] = useState('');
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout

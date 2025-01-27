@@ -27,7 +27,7 @@ export default async function handler(
       return res.status(400).json({ error: 'Message and purpose are required' });
     }
 
-    let prompt = LlmPrompts[purpose] + message;
+    const prompt = LlmPrompts[purpose] + message;
 
     console.log('🟨 Creating OpenAI client with URL:', process.env.OPENAI_API_URL);
     const client = new OpenAI({
