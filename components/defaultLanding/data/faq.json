@@ -1,14 +1,14 @@
 [
   {
-    "question": "What is BoxyHQ?",
-    "answer": "Enterprise readiness for B2B SaaS, straight out of the box."
+    "question": "What is WorkBridge?",
+    "answer": "We bridge the gap between waterfall and agile methodologies using AI-powered solutions."
   },
   {
-    "question": "What BoxyHQ offers?",
-    "answer": "At BoxyHQ we enable you to add plug-and-play enterprise-ready features to your SaaS product. Show enterprise customers and InfoSec teams you are ready to pass their processes with flying colors. We are open-source and free!"
+    "question": "What WorkBridge offers?",
+    "answer": "WorkBridge provides a simple interface for stakeholders to monitor project progress, while giving developers tools to break down work into manageable pieces and provide accurate estimates. This builds trust between teams and helps ensure successful delivery."
   },
   {
-    "question": "Is BoxyHQ offers developer security tools?",
-    "answer": "We have curated a list of awesome open-source developer security tools.It includes security principles and controls relevant to popular compliance certifications (like ISO27001, SOC2, MVSP, etc.)"
+    "question": "Does WorkBridge offers AI Tools?",
+    "answer": "WorkBridge uses AI to help you break down work into manageable pieces and provide accurate estimates. It also uses AI to help you monitor project progress."
   }
 ]
