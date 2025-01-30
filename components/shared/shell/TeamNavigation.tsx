@@ -22,7 +22,13 @@ const TeamNavigation = ({ slug, activePathname }: NavigationItemsProps) => {
       href: `/teams/${slug}/todos`,
       icon: QueueListIcon,
       active: activePathname === `/teams/${slug}/todos`,
-    },    
+    },
+    {
+      name: t('team-work'),
+      href: `/teams/${slug}/work`,
+      icon: QueueListIcon,
+      active: activePathname === `/teams/${slug}/work`,
+    },
     {
       name: t('settings'),
       href: `/teams/${slug}/settings`,
