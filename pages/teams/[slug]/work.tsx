@@ -14,7 +14,6 @@ function WorkPage() {
   const [newTitle, setNewTitle] = useState('');
   const [addingChildId, setAddingChildId] = useState<string | null>(null);
   const [childTitle, setChildTitle] = useState('');
-  const [showDetails, setShowDetails] = useState(false);
   const [isDebugOpen, setIsDebugOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentNode, setCurrentNode] = useState<WorkNode | null>(null);
@@ -30,7 +29,7 @@ function WorkPage() {
       };
       fetchNodes(team.id);
     }
-  }, [team?.id]);
+  }, [team?.id, setNodes]);
 
   if (isLoading) {
     return <Loading />;
@@ -103,7 +102,7 @@ function WorkPage() {
                   onClick={() => setAddingChildId(node.id)}
                   className="btn btn-sm btn-primary text-white join-item"
                 >
-                  Add {buttonText}
+                  {t('Add')} {t(buttonText)}
                 </button>
               )}
               <button
@@ -118,7 +117,7 @@ function WorkPage() {
             <div className="flex gap-2 mb-2 w-full">
               <input
                 type="text"
-                placeholder={`Add ${buttonText}`}
+                placeholder={t(`Add ${buttonText}`)}
                 value={childTitle}
                 onChange={(e) => setChildTitle(e.target.value)}
                 className="ml-4 input input-sm input-ghost flex-1"
@@ -152,11 +151,11 @@ function WorkPage() {
 
   return (
     <div className="flex gap-4 p-4">
-      <div className={`flex-1 mb-4 ${showDetails ? 'w-2/3' : 'w-full'}`}>
+      <div className="flex-1 mb-4 w-full">
         <div className="flex items-center gap-2 mb-6">
           <input
             type="text"
-            placeholder="Add a project"
+            placeholder={t('Add a project')}
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             className="input input-bordered w-full"
@@ -170,7 +169,7 @@ function WorkPage() {
             onClick={() => createNode()}
             className="btn btn-primary"
           >
-            Add
+            {t('Add')}
           </button>
         </div>
 
@@ -181,22 +180,14 @@ function WorkPage() {
         <hr className="my-8" />
 
         <button onClick={() => setIsDebugOpen(!isDebugOpen)} className="btn btn-success btn-sm mb-4">
-          {isDebugOpen ? 'Hide Debug Info' : 'Show Debug Info'}
+          {isDebugOpen ? t('Hide Debug Info') : t('Show Debug Info')}
         </button>
         {isDebugOpen && <pre>{JSON.stringify(nodes, null, 2)}</pre>}
       </div>
-      {showDetails && (
-        <div className="flex-1 mb-4">
-          <h1 className="text-2xl font-bold mb-4">Details</h1>
-          <div className="p-4 border border-gray-300 rounded">
-            <p>Placeholder for right pane content</p>
-          </div>
-        </div>
-      )}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[9999]">
           <div className="bg-white p-4 rounded shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Edit Title</h2>
+            <h2 className="text-xl font-bold mb-4">{t('Edit Title')}</h2>
             <input
               type="text"
               value={editTitle}
@@ -204,8 +195,8 @@ function WorkPage() {
               className="input input-bordered mb-4"
             />
             <div className="flex justify-end gap-2">
-              <button onClick={closeModal} className="btn btn-secondary">Cancel</button>
-              <button onClick={saveWork} className="btn btn-primary">Save</button>
+              <button onClick={closeModal} className="btn btn-secondary">{t('Cancel')}</button>
+              <button onClick={saveWork} className="btn btn-primary">{t('Save')}</button>
             </div>
           </div>
         </div>
